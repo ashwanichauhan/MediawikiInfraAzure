@@ -35,7 +35,7 @@ resource "azurerm_virtual_machine" "mediawikipublicvm" {
   }
 
 
-  provisioner "remote-exec" {
+  provisioner "local-exec" {
     command = "command to playbook on vmss (playbook.yaml)"
   }
 
