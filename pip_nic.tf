@@ -45,7 +45,7 @@ resource "azurerm_network_interface" "mediawikiprivatenic" {
   resource_group_name = "${azurerm_resource_group.mediawikigroup.name}"
 
   ip_configuration {
-    name = "myRundeckNICConfiguration"
+    name = "mymediawikiNICConfiguration"
     subnet_id = "${azurerm_subnet.myprivatesubnet.id}"
     private_ip_address_allocation = "static"
     private_ip_address = "10.0.1.4"

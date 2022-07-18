@@ -29,7 +29,7 @@ resource "azurerm_lb_probe" "vmss" {
  resource_group_name = "${azurerm_resource_group.mediawikigroup.name}"
  loadbalancer_id     = azurerm_lb.vmss.id
  name                = "ssh-running-probe"
- port                = var.application_port
+ port                = 22
 }
 
 resource "azurerm_lb_rule" "lbnatrule" {
@@ -37,8 +37,8 @@ resource "azurerm_lb_rule" "lbnatrule" {
    loadbalancer_id                = azurerm_lb.vmss.id
    name                           = "http"
    protocol                       = "Tcp"
-   frontend_port                  = var.application_port
-   backend_port                   = var.application_port
+   frontend_port                  = "${var.application_port}"
+   backend_port                   = "${var.application_port}"
    backend_address_pool_id        = azurerm_lb_backend_address_pool.bpepool.id
    frontend_ip_configuration_name = "PublicIPAddress"
    probe_id                       = azurerm_lb_probe.vmss.id
@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
    computer_name_prefix = "MediawikiVmss"
     admin_username = "${var.myMediawikiUsername}"
     admin_password = "${var.myVMPassword}"
-   custom_data          = file("web.conf")
+  
  }
 
  os_profile_linux_config {

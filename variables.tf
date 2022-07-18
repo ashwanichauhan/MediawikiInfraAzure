@@ -54,3 +54,7 @@ variable "myVPNUsername" {
 variable "myVMPassword" {
   description = "Enter Password"  
 }
+
+variable "application_port"{
+description = "Enter port" 
+}
